@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Windows;
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TimeTracker.Data.Database;
+using TimeTracker.Data.Repositories;
+using TimeTracker.Presentation.Stores;
 
 namespace TimeTracker.Presentation;
 
@@ -24,7 +27,14 @@ public partial class App : Application
     {
         var services = new ServiceCollection();
 
+        services.AddSingleton<IDialogCoordinator, DialogCoordinator>();
+
+        services.AddSingleton<SelectedUserStore>();
+
         services.AddTransient<TimeTrackerContext>();
+
+        services.AddTransient(typeof(IRepository<>), typeof(RepositoryBase<>));
+
 
         return services.BuildServiceProvider();
     }
