@@ -3,9 +3,9 @@ using TimeTracker.Presentation.ViewModels;
 
 namespace TimeTracker.Presentation.Messages;
 
-public class NavigationMessage : ValueChangedMessage<ViewModel>
+public class NavigationMessage : ValueChangedMessage<string>
 {
-    public NavigationMessage(ViewModel value) : base(value)
+    public NavigationMessage(string value) : base(value)
     {
     }
 }

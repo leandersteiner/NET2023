@@ -1,9 +1,12 @@
+using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using TimeTracker.Data.Models;
+using TimeTracker.Presentation.Messages;
 
 namespace TimeTracker.Presentation.Stores;
 
-public class AppContextStore : ObservableObject
+public class AppContextStore : ObservableRecipient, IRecipient<UserLoggedInMessage>
 {
     private User? _loggedInUser;
     private bool _isLoggedIn;
@@ -13,6 +16,7 @@ public class AppContextStore : ObservableObject
 
     public AppContextStore()
     {
+        WeakReferenceMessenger.Default.Register(this);
         LoggedInUser = null;
         IsLoggedIn = false;
     }
@@ -39,5 +43,17 @@ public class AppContextStore : ObservableObject
     {
         get => _selectedProject;
         set => SetProperty(ref _selectedProject, value);
+    }
+
+    public void Receive(UserLoggedInMessage message)
+    {
+        Debug.WriteLine("Received");
+        LoggedInUser = message.Value.User;
+        if (LoggedInUser == null)
+        {
+            IsLoggedIn = false;
+        }
+
+        IsLoggedIn = true;
     }
 }
