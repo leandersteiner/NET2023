@@ -2,11 +2,11 @@
 
 namespace TimeTracker.Data.Models;
 
-public class Task : BaseModel
+public class WorkItem : BaseModel
 {
     private string _title = string.Empty;
     private ICollection<Record> _records = null!;
-    private ICollection<Task> _subtasks = null!;
+    private ICollection<WorkItem> _subtasks = null!;
     private User _creator = null!;
 
     [Required]
@@ -23,7 +23,7 @@ public class Task : BaseModel
         set => SetProperty(ref _records, value);
     }
 
-    public ICollection<Task> Subtasks
+    public ICollection<WorkItem> Subtasks
     {
         get => _subtasks;
         set => SetProperty(ref _subtasks, value);

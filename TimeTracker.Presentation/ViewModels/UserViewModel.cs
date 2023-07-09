@@ -5,10 +5,10 @@ namespace TimeTracker.Presentation.ViewModels;
 
 public class UserViewModel : ObservableObject
 {
-    public UserViewModel(User? user)
+    public UserViewModel(User user)
     {
         User = user;
     }
 
-    public User? User { get; }
+    public User User { get; }
 }

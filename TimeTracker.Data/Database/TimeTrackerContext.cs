@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TimeTracker.Data.Models;
-using Task = TimeTracker.Data.Models.Task;
 
 namespace TimeTracker.Data.Database;
 
@@ -12,7 +11,7 @@ public class TimeTrackerContext : DbContext
     public DbSet<Organisation> Organisations => Set<Organisation>();
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<Record> Records => Set<Record>();
-    public DbSet<Task> Tasks => Set<Task>();
+    public DbSet<WorkItem> Tasks => Set<WorkItem>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

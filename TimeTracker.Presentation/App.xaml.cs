@@ -3,9 +3,12 @@ using System.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TimeTracker.Core.Services;
 using TimeTracker.Data.Database;
 using TimeTracker.Data.Repositories;
 using TimeTracker.Presentation.Stores;
+using TimeTracker.Presentation.ViewModels;
+using TimeTracker.Presentation.Views;
 
 namespace TimeTracker.Presentation;
 
@@ -36,6 +39,11 @@ public partial class App : Application
         services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
         services.AddTransient<IUserRepository, UserRepository>();
 
+        services.AddTransient<UserService>();
+
+        services.AddTransient<ShellViewModel>();
+        services.AddTransient<LoginControlViewModel>();
+        services.AddTransient<SignupControlViewModel>();
 
         return services.BuildServiceProvider();
     }

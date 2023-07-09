@@ -4,17 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:TimeTracker.Presentation.Controls"
+             xmlns:ff="clr-namespace:TimeTracker.Presentation.Utils"
+             xmlns:viewModels="clr-namespace:TimeTracker.Presentation.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewModels:SignupControlViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="250" d:DesignWidth="400">
     <StackPanel>
         <Label Content="First Name" />
-        <TextBox />
+        <TextBox Text="{Binding FirstName}" />
         <Label Content="Last Name" />
-        <TextBox />
+        <TextBox Text="{Binding LastName}" />
         <Label Content="Email" />
-        <TextBox />
+        <TextBox Text="{Binding Email}" />
         <Label Content="Password" />
-        <PasswordBox />
-        <Button Content="Login" Margin="0,10,0,0" />
+        <PasswordBox ff:PasswordBoxAssistant.BindPassword="True"
+                     ff:PasswordBoxAssistant.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Content="Login" Margin="0,10,0,0" Command="{Binding SignupCommand}" />
     </StackPanel>
 </UserControl>
