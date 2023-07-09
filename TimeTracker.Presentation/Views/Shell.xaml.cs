@@ -13,7 +13,7 @@ public partial class Shell
         var shellViewModel = App.Current.Services.GetService<ShellViewModel>();
         DataContext = shellViewModel;
 
-        //ContentFrame.Navigate(new UserSelectionView());
+        ContentFrame.Navigate(new AuthView());
     }
 
     private void UserButton_OnClick(object sender, RoutedEventArgs e)
