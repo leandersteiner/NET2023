@@ -30,11 +30,11 @@ public partial class App : Application
 
         services.AddSingleton<IDialogCoordinator, DialogCoordinator>();
 
-        services.AddSingleton<SelectedUserStore>();
-
+        services.AddSingleton<AppContextStore>();
         services.AddTransient<TimeTrackerContext>();
 
         services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
+        services.AddTransient<IUserRepository, UserRepository>();
 
 
         return services.BuildServiceProvider();

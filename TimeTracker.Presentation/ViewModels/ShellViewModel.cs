@@ -5,16 +5,16 @@ namespace TimeTracker.Presentation.ViewModels;
 
 public class ShellViewModel : ObservableObject
 {
-    private SelectedUserStore _selectedUserStore;
+    private AppContextStore _appContextStore;
 
-    public ShellViewModel(SelectedUserStore selectedUserStore)
+    public ShellViewModel(AppContextStore appContextStore)
     {
-        _selectedUserStore = selectedUserStore;
+        _appContextStore = appContextStore;
     }
 
-    public SelectedUserStore SelectedUserStore
+    public AppContextStore AppContextStore
     {
-        get => _selectedUserStore;
-        private set => SetProperty(ref _selectedUserStore, value);
+        get => _appContextStore;
+        private set => SetProperty(ref _appContextStore, value);
     }
 }

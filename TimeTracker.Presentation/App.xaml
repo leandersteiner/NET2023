@@ -1,9 +1,10 @@
-﻿<Application x:Class="TimeTracker.Presentation.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TimeTracker.Presentation"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             StartupUri="Views/Shell.xaml">
+﻿<Application
+    x:Class="TimeTracker.Presentation.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TimeTracker.Presentation"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    StartupUri="Views/Shell.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,8 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <!--  Theme setting  -->
                 <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" /> -->
-                <ResourceDictionary
-                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Cobalt.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Cobalt.xaml" />
 
                 <ResourceDictionary>
                     <Thickness x:Key="MarginBottom12">0,0,0,12</Thickness>
@@ -50,7 +50,7 @@
                                 <Run Text="{Binding SetTemplate.Exercise.Name}" />
                             </TextBlock>
                         </StackPanel>
-                    </DataTemplate> -->
+                    </DataTemplate>-->
 
                     <!--  Template für die Anzeige des Fehlers als roter Text unter dem jeweiligen Control  -->
                     <ControlTemplate x:Key="ErrorTemplate">
