@@ -4,11 +4,11 @@ using TimeTracker.Data.Exceptions;
 
 namespace TimeTracker.Data.Repositories;
 
-public class RepositoryBase<T> : IRepository<T> where T : class
+public class BaseRepository<T> : IRepository<T> where T : class
 {
     protected readonly TimeTrackerContext _context;
 
-    public RepositoryBase(TimeTrackerContext context)
+    public BaseRepository(TimeTrackerContext context)
     {
         _context = context;
     }

@@ -11,6 +11,7 @@ namespace TimeTracker.Presentation;
 
 public partial class App : Application
 {
+    public new static App Current => (App) Application.Current;
     public IServiceProvider Services { get; }
 
     public App()
@@ -33,7 +34,7 @@ public partial class App : Application
 
         services.AddTransient<TimeTrackerContext>();
 
-        services.AddTransient(typeof(IRepository<>), typeof(RepositoryBase<>));
+        services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
 
 
         return services.BuildServiceProvider();
