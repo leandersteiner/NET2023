@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:TimeTracker.Presentation.ViewModels"
     xmlns:views="clr-namespace:TimeTracker.Presentation.Views"
-    Title="StrengthPlanner"
+    Title="TimeTracker"
     Width="700"
     Height="450"
     MinWidth="700"
@@ -24,16 +24,19 @@
             Grid.Row="0"
             ToolBar.OverflowMode="Never"
             ToolBarTray.IsLocked="False"
-            Visibility="{Binding AppContextStore.IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Button Click="BackToOrganisationSelectionButton_OnClick">
+            Visibility="{Binding AppContextStore.UserSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Button Click="BackToUserSelectionButton_OnClick">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                         Kind="ArrowLeft"
                         Visibility="Visible" />
-                    <Label>Organisation Selection</Label>
+                    <Label>User Selection</Label>
                 </StackPanel>
+            </Button>
+            <Button Click="OrganisationsButton_OnClick">
+                <Label>Organisations</Label>
             </Button>
             <Button Click="ProjectsButton_OnClick">
                 <Label>Projects</Label>
@@ -44,7 +47,7 @@
             <Button Click="RecordsButton_OnClick">
                 <Label>Recorded Times</Label>
             </Button>
-            <Button Click="UserButton_OnClick" Content="{Binding AppContextStore.LoggedInUser.Email}" />
+            <Button Click="UserButton_OnClick" Content="{Binding AppContextStore.SelectedUser.Username}" />
         </ToolBar>
         <Frame
             Name="ContentFrame"

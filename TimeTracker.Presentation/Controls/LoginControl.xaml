@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TimeTracker.Presentation.Controls"
              xmlns:ff="clr-namespace:TimeTracker.Presentation.Utils"
              xmlns:viewModels="clr-namespace:TimeTracker.Presentation.ViewModels"
-             d:DataContext="{d:DesignInstance Type=viewModels:LoginControlViewModel}"
+             d:DataContext="{d:DesignInstance Type=viewModels:LoginControlViewModelBase}"
              mc:Ignorable="d"
              d:DesignHeight="150" d:DesignWidth="400">
     <StackPanel>

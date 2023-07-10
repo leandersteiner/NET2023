@@ -1,5 +1,5 @@
 ﻿namespace TimeTracker.Presentation.ViewModels;
 
-public class HomeViewViewModel : ViewModel
+public class HomeViewViewModelBase : ViewModelBase
 {
 }

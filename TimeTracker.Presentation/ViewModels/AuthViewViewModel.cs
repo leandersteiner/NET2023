@@ -1,5 +1,5 @@
 ﻿namespace TimeTracker.Presentation.ViewModels;
 
-public class AuthViewViewModel : ViewModel
+public class AuthViewViewModelBase : ViewModelBase
 {
 }

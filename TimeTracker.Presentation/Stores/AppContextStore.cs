@@ -6,10 +6,10 @@ using TimeTracker.Presentation.Messages;
 
 namespace TimeTracker.Presentation.Stores;
 
-public class AppContextStore : ObservableRecipient, IRecipient<UserLoggedInMessage>
+public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessage>
 {
-    private User? _loggedInUser;
-    private bool _isLoggedIn;
+    private User? _selectedUser;
+    private bool _userSelected;
 
     private Organisation? _selectedOrganisation;
     private Project? _selectedProject;
@@ -17,20 +17,20 @@ public class AppContextStore : ObservableRecipient, IRecipient<UserLoggedInMessa
     public AppContextStore()
     {
         WeakReferenceMessenger.Default.Register(this);
-        LoggedInUser = null;
-        IsLoggedIn = false;
+        SelectedUser = null;
+        UserSelected = false;
     }
 
-    public User? LoggedInUser
+    public User? SelectedUser
     {
-        get => _loggedInUser;
-        set => SetProperty(ref _loggedInUser, value);
+        get => _selectedUser;
+        set => SetProperty(ref _selectedUser, value);
     }
 
-    public bool IsLoggedIn
+    public bool UserSelected
     {
-        get => _isLoggedIn;
-        set => SetProperty(ref _isLoggedIn, value);
+        get => _userSelected;
+        set => SetProperty(ref _userSelected, value);
     }
 
     public Organisation? SelectedOrganisation
@@ -45,15 +45,23 @@ public class AppContextStore : ObservableRecipient, IRecipient<UserLoggedInMessa
         set => SetProperty(ref _selectedProject, value);
     }
 
-    public void Receive(UserLoggedInMessage message)
+    public void Receive(SelectedUserMessage message)
     {
         Debug.WriteLine("Received");
-        LoggedInUser = message.Value.User;
-        if (LoggedInUser == null)
+        if (message.Value is null)
         {
-            IsLoggedIn = false;
+            SelectedUser = null;
+            UserSelected = false;
+            return;
         }
 
-        IsLoggedIn = true;
+        SelectedUser = message.Value.User;
+        if (SelectedUser == null)
+        {
+            UserSelected = false;
+            return;
+        }
+
+        UserSelected = true;
     }
 }

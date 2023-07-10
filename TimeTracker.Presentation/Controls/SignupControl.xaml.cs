@@ -6,13 +6,13 @@ namespace TimeTracker.Presentation.Controls;
 
 public partial class SignupControl : UserControl
 {
-    private readonly SignupControlViewModel? _signupControlViewModel;
+    private readonly SignupControlViewModelBase? _signupControlViewModel;
 
     public SignupControl()
     {
         InitializeComponent();
 
-        _signupControlViewModel = App.Current.Services.GetService<SignupControlViewModel>();
+        _signupControlViewModel = App.Current.Services.GetService<SignupControlViewModelBase>();
         DataContext = _signupControlViewModel;
     }
 }

@@ -4,10 +4,19 @@ namespace TimeTracker.Data.Models;
 
 public class User : BaseModel
 {
+    private string _username = string.Empty;
     private string _email = string.Empty;
     private string _firstName = string.Empty;
     private string _lastName = string.Empty;
     private string _password = string.Empty;
+
+    [Required]
+    [MinLength(2)]
+    public string Username
+    {
+        get => _username;
+        set => SetProperty(ref _username, value);
+    }
 
     [Required]
     [EmailAddress]

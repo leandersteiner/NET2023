@@ -42,8 +42,10 @@ public partial class App : Application
         services.AddTransient<UserService>();
 
         services.AddTransient<ShellViewModel>();
-        services.AddTransient<LoginControlViewModel>();
-        services.AddTransient<SignupControlViewModel>();
+        services.AddTransient<LoginControlViewModelBase>();
+        services.AddTransient<SignupControlViewModelBase>();
+        services.AddTransient<UserListViewModel>();
+        services.AddTransient<UserSelectionViewModel>();
 
         return services.BuildServiceProvider();
     }

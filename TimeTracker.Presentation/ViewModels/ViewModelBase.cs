@@ -2,6 +2,6 @@
 
 namespace TimeTracker.Presentation.ViewModels;
 
-public class ViewModel : ObservableObject
+public class ViewModelBase : ObservableObject
 {
 }

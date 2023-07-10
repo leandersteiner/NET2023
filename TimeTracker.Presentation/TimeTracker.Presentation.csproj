@@ -23,4 +23,12 @@
     <ProjectReference Include="..\TimeTracker.Core\TimeTracker.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Views\OrganisationSelectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

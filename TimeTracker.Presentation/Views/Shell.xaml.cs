@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
+using TimeTracker.Presentation.Messages;
 using TimeTracker.Presentation.ViewModels;
 
 namespace TimeTracker.Presentation.Views;
@@ -13,7 +15,7 @@ public partial class Shell
         var shellViewModel = App.Current.Services.GetService<ShellViewModel>();
         DataContext = shellViewModel;
 
-        ContentFrame.Navigate(new AuthView());
+        ContentFrame.Navigate(new UserSelectionView());
     }
 
     private void UserButton_OnClick(object sender, RoutedEventArgs e)
@@ -36,8 +38,14 @@ public partial class Shell
         throw new System.NotImplementedException();
     }
 
-    private void BackToOrganisationSelectionButton_OnClick(object sender, RoutedEventArgs e)
+    private void OrganisationsButton_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        ContentFrame.Navigate(new OrganisationSelectionView());
+    }
+
+    private void BackToUserSelectionButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        WeakReferenceMessenger.Default.Send(new SelectedUserMessage(null));
+        ContentFrame.Navigate(new UserSelectionView());
     }
 }

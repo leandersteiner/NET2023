@@ -6,11 +6,11 @@ using TimeTracker.Core.Services;
 
 namespace TimeTracker.Presentation.ViewModels;
 
-public class SignupControlViewModel : ViewModel
+public class SignupControlViewModelBase : ViewModelBase
 {
     private readonly UserService _userService;
 
-    public SignupControlViewModel(UserService userService)
+    public SignupControlViewModelBase(UserService userService)
     {
         _userService = userService;
         SignupCommand = new RelayCommand(Signup, CanSignup);
