@@ -22,7 +22,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Select a Organisation" FontSize="{StaticResource FontSizeExtraLarge}"
+            <Label Content="Select an Organisation" FontSize="{StaticResource FontSizeExtraLarge}"
                    Margin="{StaticResource MarginAllSides12}">
             </Label>
             <Button Content="Create" Command="{Binding AddOrganisationCommand}" Height="40" Margin="10,0,0,0"></Button>
@@ -69,7 +69,7 @@
                           MouseLeftButtonDown="OrganisationSelection_OnMouseLeftButtonDown">
                         <StackPanel Margin="{StaticResource MarginAllSides12}">
                             <TextBlock FontSize="{StaticResource FontSizeExtraLarge}" Foreground="White">
-                                <Run Text="{Binding Organisation.Organisationname}" />
+                                <Run Text="{Binding Organisation.Name}" />
                             </TextBlock>
                         </StackPanel>
                     </Grid>

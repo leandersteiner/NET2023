@@ -1,5 +1,4 @@
 using System.Windows.Data;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using TimeTracker.Data.Models;
@@ -9,7 +8,7 @@ namespace TimeTracker.Presentation.ViewModels;
 public class UserSelectionViewModel : ViewModelBase
 {
     private UserViewModel? _doubleClickedUser;
-    private IDialogCoordinator _dialogCoordinator;
+    private readonly IDialogCoordinator _dialogCoordinator;
 
     public UserSelectionViewModel(UserListViewModel userListViewModel, IDialogCoordinator dialogCoordinator)
     {
@@ -33,7 +32,7 @@ public class UserSelectionViewModel : ViewModelBase
 
     public UserViewModel? SelectedUser => UsersView.CurrentItem as UserViewModel;
 
-    public UserListViewModel UserListViewModel { get; }
+    private UserListViewModel UserListViewModel { get; }
 
     private async void AddUserExecute()
     {
@@ -55,7 +54,7 @@ public class UserSelectionViewModel : ViewModelBase
 
     private async void DeleteUserExecute()
     {
-        await UserListViewModel.DeleteUserAsync(SelectedUser);
+        if (SelectedUser != null) await UserListViewModel.DeleteUserAsync(SelectedUser);
     }
 
     private async void EditUserExecute()
@@ -68,11 +67,11 @@ public class UserSelectionViewModel : ViewModelBase
                 AnimateHide = false,
                 AnimateShow = false,
                 DefaultButtonFocus = MessageDialogResult.Affirmative,
-                DefaultText = SelectedUser.User.Username
+                DefaultText = SelectedUser?.User.Username
             });
 
         if (result == null || result.Length <= 2 || result.Length >= 32) return;
-        SelectedUser.User.Username = result;
+        SelectedUser!.User.Username = result;
         await UserListViewModel.UpdateUserAsync(SelectedUser);
     }
 }

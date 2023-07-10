@@ -1,21 +1,23 @@
 using System.Windows.Data;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using TimeTracker.Data.Models;
+using TimeTracker.Presentation.Stores;
 
 namespace TimeTracker.Presentation.ViewModels;
 
 public class OrganisationSelectionViewModel : ViewModelBase
 {
     private OrganisationViewModel? _doubleClickedOrganisation;
-    private IDialogCoordinator _dialogCoordinator;
+    private readonly IDialogCoordinator _dialogCoordinator;
+    private readonly AppContextStore _appContextStore;
 
     public OrganisationSelectionViewModel(OrganisationListViewModel organisationListViewModel,
-        IDialogCoordinator dialogCoordinator)
+        IDialogCoordinator dialogCoordinator, AppContextStore appContextStore)
     {
         _dialogCoordinator = dialogCoordinator;
-        OrganisationListViewModel = OrganisationListViewModel;
+        _appContextStore = appContextStore;
+        OrganisationListViewModel = organisationListViewModel;
         OrganisationsView = new ListCollectionView(OrganisationListViewModel.Organisations);
         OrganisationsView.CurrentChanged += (_, _) => OnPropertyChanged(nameof(SelectedOrganisation));
     }
@@ -34,7 +36,7 @@ public class OrganisationSelectionViewModel : ViewModelBase
 
     public OrganisationViewModel? SelectedOrganisation => OrganisationsView.CurrentItem as OrganisationViewModel;
 
-    public OrganisationListViewModel OrganisationListViewModel { get; }
+    private OrganisationListViewModel OrganisationListViewModel { get; }
 
     private async void AddOrganisationExecute()
     {
@@ -51,13 +53,13 @@ public class OrganisationSelectionViewModel : ViewModelBase
 
         if (result == null || result.Length <= 2 || result.Length >= 32) return;
 
-        var newOrganisation = new Organisation {Name = result};
+        var newOrganisation = new Organisation {Name = result, Creator = _appContextStore.SelectedUser!};
         await OrganisationListViewModel.AddOrganisationAsync(new OrganisationViewModel(newOrganisation));
     }
 
     private async void DeleteOrganisationExecute()
     {
-        await OrganisationListViewModel.DeleteOrganisationAsync(SelectedOrganisation);
+        if (SelectedOrganisation != null) await OrganisationListViewModel.DeleteOrganisationAsync(SelectedOrganisation);
     }
 
     private async void EditOrganisationExecute()
@@ -71,11 +73,11 @@ public class OrganisationSelectionViewModel : ViewModelBase
                 AnimateHide = false,
                 AnimateShow = false,
                 DefaultButtonFocus = MessageDialogResult.Affirmative,
-                DefaultText = SelectedOrganisation.Organisation.Name
+                DefaultText = SelectedOrganisation?.Organisation.Name
             });
 
         if (result == null || result.Length <= 2 || result.Length >= 32) return;
-        SelectedOrganisation.Organisation.Name = result;
+        SelectedOrganisation!.Organisation.Name = result;
         await OrganisationListViewModel.UpdateOrganisationAsync(SelectedOrganisation);
     }
 }

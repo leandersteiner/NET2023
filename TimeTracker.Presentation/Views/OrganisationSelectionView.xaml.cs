@@ -10,23 +10,23 @@ namespace TimeTracker.Presentation.Views;
 
 public partial class OrganisationSelectionView
 {
-    private readonly OrganisationSelectionViewModel? _OrganisationSelectionViewModel;
+    private readonly OrganisationSelectionViewModel? _organisationSelectionViewModel;
 
     public OrganisationSelectionView()
     {
         InitializeComponent();
 
-        _OrganisationSelectionViewModel = App.Current.Services.GetService<OrganisationSelectionViewModel>();
-        DataContext = _OrganisationSelectionViewModel;
+        _organisationSelectionViewModel = App.Current.Services.GetService<OrganisationSelectionViewModel>();
+        DataContext = _organisationSelectionViewModel;
     }
 
     private void OrganisationSelection_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        if (_OrganisationSelectionViewModel?.SelectedOrganisation != null)
+        if (_organisationSelectionViewModel?.SelectedOrganisation != null)
         {
-            Debug.WriteLine("Sent: " + _OrganisationSelectionViewModel.SelectedOrganisation.Organisation?.Id);
+            Debug.WriteLine("Sent: " + _organisationSelectionViewModel.SelectedOrganisation.Organisation?.Id);
             WeakReferenceMessenger.Default.Send(
-                new SelectedOrganisationMessage(_OrganisationSelectionViewModel.SelectedOrganisation));
+                new SelectedOrganisationMessage(_organisationSelectionViewModel.SelectedOrganisation));
         }
 
         NavigationService?.Navigate(new HomeView());

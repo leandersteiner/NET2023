@@ -38,6 +38,7 @@ public partial class App : Application
 
         services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
         services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IOrganisationRepository, OrganisationRepository>();
 
         services.AddTransient<UserService>();
 
@@ -46,6 +47,8 @@ public partial class App : Application
         services.AddTransient<SignupControlViewModelBase>();
         services.AddTransient<UserListViewModel>();
         services.AddTransient<UserSelectionViewModel>();
+        services.AddTransient<OrganisationListViewModel>();
+        services.AddTransient<OrganisationSelectionViewModel>();
 
         return services.BuildServiceProvider();
     }

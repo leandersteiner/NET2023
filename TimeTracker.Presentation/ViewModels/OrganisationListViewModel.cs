@@ -1,20 +1,23 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using TimeTracker.Data.Models;
 using TimeTracker.Data.Repositories;
+using TimeTracker.Presentation.Stores;
 
 namespace TimeTracker.Presentation.ViewModels;
 
 public class OrganisationListViewModel : ViewModelBase
 {
-    private readonly IRepository<Organisation> _organisationRepository;
+    private readonly IOrganisationRepository _organisationRepository;
     private ObservableCollection<OrganisationViewModel> _organisations;
+    private readonly AppContextStore _appContextStore;
 
-    public OrganisationListViewModel(IRepository<Organisation> organisationRepository)
+    public OrganisationListViewModel(IOrganisationRepository organisationRepository, AppContextStore appContextStore)
     {
         _organisationRepository = organisationRepository;
+        _appContextStore = appContextStore;
         Task.Run(LoadOrganisationsAsync).Wait();
     }
 
@@ -57,7 +60,7 @@ public class OrganisationListViewModel : ViewModelBase
     private async Task LoadOrganisationsAsync()
     {
         Organisations = new ObservableCollection<OrganisationViewModel>();
-        var organisations = await _organisationRepository.FindAllAsync();
+        var organisations = await _organisationRepository.FindAllForUser(_appContextStore.SelectedUser!);
         organisations.ForEach(o => Organisations.Add(new OrganisationViewModel(o)));
     }
 }
