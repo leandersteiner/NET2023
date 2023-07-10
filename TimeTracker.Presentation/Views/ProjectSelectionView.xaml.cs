@@ -30,7 +30,7 @@ public partial class ProjectSelectionView
                 new SelectedProjectMessage(_projectSelectionViewModel.SelectedProject));
         }
 
-        NavigationService?.Navigate(new TimeRecorder());
+        NavigationService?.Navigate(new WorkItemSelectionView());
     }
 
     private void EventSetter_OnHandler(object sender, MouseEventArgs e)

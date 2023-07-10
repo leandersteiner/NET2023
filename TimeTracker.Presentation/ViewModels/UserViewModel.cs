@@ -3,7 +3,7 @@ using TimeTracker.Data.Models;
 
 namespace TimeTracker.Presentation.ViewModels;
 
-public class UserViewModel : ObservableObject
+public class UserViewModel : ViewModelBase
 {
     public UserViewModel(User user)
     {

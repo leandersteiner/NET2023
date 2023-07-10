@@ -4,5 +4,5 @@ namespace TimeTracker.Data.Repositories;
 
 public interface IRecordRepository : IRepository<Record>
 {
-    Task<List<Record>> FindAllForProject(Project project);
+    Task<List<Record>> FindAllForUser(User user);
 }

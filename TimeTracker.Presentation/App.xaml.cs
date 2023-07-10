@@ -8,7 +8,6 @@ using TimeTracker.Data.Database;
 using TimeTracker.Data.Repositories;
 using TimeTracker.Presentation.Stores;
 using TimeTracker.Presentation.ViewModels;
-using TimeTracker.Presentation.Views;
 
 namespace TimeTracker.Presentation;
 
@@ -41,6 +40,7 @@ public partial class App : Application
         services.AddTransient<IOrganisationRepository, OrganisationRepository>();
         services.AddTransient<IProjectRepository, ProjectRepository>();
         services.AddTransient<IRecordRepository, RecordRepository>();
+        services.AddTransient<IWorkItemRepository, WorkItemRepository>();
 
         services.AddTransient<UserService>();
 
@@ -53,8 +53,11 @@ public partial class App : Application
         services.AddTransient<OrganisationSelectionViewModel>();
         services.AddTransient<ProjectListViewModel>();
         services.AddTransient<ProjectSelectionViewModel>();
+        services.AddTransient<WorkItemListViewModel>();
+        services.AddTransient<WorkItemSelectionViewModel>();
+        services.AddTransient<RecordListViewModel>();
+        services.AddTransient<RecordedTimesViewViewModel>();
         services.AddTransient<UserViewViewModel>();
-        services.AddTransient<AddRecordViewViewModel>();
         services.AddTransient<TimeRecorderViewModel>();
 
         return services.BuildServiceProvider();

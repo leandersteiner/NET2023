@@ -25,12 +25,11 @@
                 <ComboBox
                     Grid.Column="0"
                     Margin="{StaticResource MarginAllSides4}"
-                    IsEditable="True"
+                    IsEditable="False"
                     IsSynchronizedWithCurrentItem="True"
-                    IsTextSearchEnabled="True"
-                    ItemsSource="{Binding WorkItemListViewModel.WorkItems }" />
+                    ItemsSource="{Binding WorkItemListViewModel.WorkItems }"
+                    SelectedItem="{Binding SelectedWorkItem}" />
                 <Label
-                    Name="TimerText"
                     Grid.Column="1"
                     Margin="{StaticResource MarginAllSides4}"
                     Content="{Binding TimerText}" />

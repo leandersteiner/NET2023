@@ -86,6 +86,9 @@ namespace TimeTracker.Data.Migrations
                     b.Property<int>("CreatorId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("End")
                         .HasColumnType("TEXT");
 

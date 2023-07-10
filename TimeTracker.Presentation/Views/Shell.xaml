@@ -47,7 +47,7 @@
             <Button Click="RecordsButton_OnClick">
                 <Label>Recorded Times</Label>
             </Button>
-            <Button Click="UserButton_OnClick" Content="{Binding AppContextStore.SelectedUser.Username}" />
+            <Button Click="UserButton_OnClick" Content="{Binding AppContextStore.SelectedUser.Username }" />
         </ToolBar>
         <Frame
             Name="ContentFrame"

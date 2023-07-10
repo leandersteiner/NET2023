@@ -10,8 +10,8 @@ public class RecordRepository : BaseRepository<Record>, IRecordRepository
     {
     }
 
-    public Task<List<Record>> FindAllForProject(Project project)
+    public Task<List<Record>> FindAllForUser(User user)
     {
-        return _context.Records.Where(r => r.Project.Id == project.Id).ToListAsync();
+        return _context.Records.Where(r => r.Creator.Id == user.Id).ToListAsync();
     }
 }

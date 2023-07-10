@@ -5,7 +5,7 @@ using TimeTracker.Presentation.Stores;
 
 namespace TimeTracker.Presentation.ViewModels;
 
-public class UserViewViewModel : ObservableObject
+public class UserViewViewModel : ViewModelBase
 {
     private UserViewModel _selectedUser;
     private readonly IUserRepository _userRepository;

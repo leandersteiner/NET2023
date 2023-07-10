@@ -6,6 +6,7 @@ public class Record : BaseModel
 {
     private DateTime _start;
     private DateTime _end;
+    private TimeSpan _duration;
     private User _creator = null!;
     private Project _project = null!;
     private WorkItem _workItem = null!;
@@ -22,6 +23,13 @@ public class Record : BaseModel
     {
         get => _end;
         set => SetProperty(ref _end, value);
+    }
+
+    [Required]
+    public TimeSpan Duration
+    {
+        get => _duration;
+        set => SetProperty(ref _duration, value);
     }
 
     public User Creator
@@ -41,6 +49,4 @@ public class Record : BaseModel
         get => _workItem;
         set => SetProperty(ref _workItem, value);
     }
-
-    public TimeSpan Duration => End - Start;
 }

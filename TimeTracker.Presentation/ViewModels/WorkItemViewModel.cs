@@ -10,4 +10,9 @@ public class WorkItemViewModel : ViewModelBase
     }
 
     public WorkItem WorkItem { get; }
+
+    public override string ToString()
+    {
+        return WorkItem.Title;
+    }
 }

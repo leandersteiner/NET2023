@@ -7,13 +7,14 @@ using TimeTracker.Presentation.Messages;
 namespace TimeTracker.Presentation.Stores;
 
 public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessage>,
-    IRecipient<SelectedOrganisationMessage>, IRecipient<SelectedProjectMessage>
+    IRecipient<SelectedOrganisationMessage>, IRecipient<SelectedProjectMessage>, IRecipient<SelectedWorkItemMessage>
 {
     private User? _selectedUser;
     private bool _userSelected;
 
     private Organisation? _selectedOrganisation;
     private Project? _selectedProject;
+    private WorkItem? _selectedWorkItem;
 
     public AppContextStore()
     {
@@ -44,6 +45,12 @@ public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessa
     {
         get => _selectedProject;
         set => SetProperty(ref _selectedProject, value);
+    }
+
+    public WorkItem? SelectedWorkItem
+    {
+        get => _selectedWorkItem;
+        set => SetProperty(ref _selectedWorkItem, value);
     }
 
     public void Receive(SelectedUserMessage message)
@@ -85,5 +92,16 @@ public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessa
         }
 
         SelectedProject = message.Value.Project;
+    }
+
+    public void Receive(SelectedWorkItemMessage message)
+    {
+        if (message.Value is null)
+        {
+            SelectedWorkItem = null;
+            return;
+        }
+
+        SelectedWorkItem = message.Value.WorkItem;
     }
 }

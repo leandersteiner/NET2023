@@ -28,12 +28,12 @@ public partial class Shell
 
     private void TasksButton_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        ContentFrame.Navigate(new WorkItemSelectionView());
     }
 
     private void RecordsButton_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        ContentFrame.Navigate(new RecordedTimesView());
     }
 
     private void OrganisationsButton_OnClick(object sender, RoutedEventArgs e)

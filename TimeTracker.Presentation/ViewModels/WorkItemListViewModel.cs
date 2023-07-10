@@ -10,11 +10,11 @@ namespace TimeTracker.Presentation.ViewModels;
 
 public class WorkItemListViewModel : ViewModelBase
 {
-    private readonly WorkItemRepository _workItemRepository;
+    private readonly IWorkItemRepository _workItemRepository;
     private ObservableCollection<WorkItemViewModel> _workItems;
     private AppContextStore _appContextStore;
 
-    public WorkItemListViewModel(WorkItemRepository workItemRepository, AppContextStore appContextStore)
+    public WorkItemListViewModel(IWorkItemRepository workItemRepository, AppContextStore appContextStore)
     {
         _workItemRepository = workItemRepository;
         _appContextStore = appContextStore;

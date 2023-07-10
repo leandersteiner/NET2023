@@ -23,6 +23,10 @@ public class TimeTrackerContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Record>()
+            .Navigation(record => record.WorkItem)
+            .AutoInclude();
     }
 
     /// <summary>

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
