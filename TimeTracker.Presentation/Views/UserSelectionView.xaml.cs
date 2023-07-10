@@ -28,7 +28,7 @@ public partial class UserSelectionView
             WeakReferenceMessenger.Default.Send(new SelectedUserMessage(_userSelectionViewModel.SelectedUser));
         }
 
-        NavigationService?.Navigate(new HomeView());
+        NavigationService?.Navigate(new OrganisationSelectionView());
     }
 
     private void EventSetter_OnHandler(object sender, MouseEventArgs e)

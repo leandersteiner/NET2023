@@ -8,6 +8,7 @@ public class WorkItem : BaseModel
     private ICollection<Record> _records = null!;
     private ICollection<WorkItem> _subtasks = null!;
     private User _creator = null!;
+    private Project _project = null!;
 
     [Required]
     [MinLength(3)]
@@ -33,5 +34,11 @@ public class WorkItem : BaseModel
     {
         get => _creator;
         set => SetProperty(ref _creator, value);
+    }
+
+    public Project Project
+    {
+        get => _project;
+        set => SetProperty(ref _project, value);
     }
 }

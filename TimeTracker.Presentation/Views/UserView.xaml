@@ -1,0 +1,51 @@
+<Page x:Class="TimeTracker.Presentation.Views.UserView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:TimeTracker.Presentation.Views"
+      mc:Ignorable="d"
+      xmlns:viewModels="clr-namespace:TimeTracker.Presentation.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewModels:UserViewViewModel}"
+      Title="UserView">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock FontSize="{StaticResource FontSizeExtraLarge}"
+                   Margin="{StaticResource MarginAllSides12}">
+            <Run Text="Settings for " />
+            <Run Text="{Binding SelectedUser.User.Username}" />
+        </TextBlock>
+        <Grid Margin="{StaticResource MarginAllSides12}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Username:" Margin="{StaticResource MarginBottom4}" />
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Text="{Binding Username}"
+                     Margin="{StaticResource MarginLeftBottom4}" />
+            <Label Grid.Row="1" Grid.Column="0" Content="First Name:" Margin="{StaticResource MarginBottom4}" />
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Text="{Binding FirstName}"
+                     Margin="{StaticResource MarginLeftBottom4}" />
+            <Label Grid.Row="2" Grid.Column="0" Content="Last Name:" Margin="{StaticResource MarginBottom4}" />
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Text="{Binding LastName}"
+                     Margin="{StaticResource MarginLeftBottom4}" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Email:" Margin="{StaticResource MarginBottom4}" />
+            <TextBox Grid.Row="3" Grid.Column="1"
+                     Text="{Binding Email}"
+                     Margin="{StaticResource MarginLeftBottom4}" />
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Content="Save"
+                    Command="{Binding UpdateUserCommand}"
+                    Margin="{StaticResource MarginTopBottom12}" />
+        </Grid>
+
+    </StackPanel>
+</Page>

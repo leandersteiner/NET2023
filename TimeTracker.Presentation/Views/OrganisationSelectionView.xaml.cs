@@ -29,7 +29,7 @@ public partial class OrganisationSelectionView
                 new SelectedOrganisationMessage(_organisationSelectionViewModel.SelectedOrganisation));
         }
 
-        NavigationService?.Navigate(new HomeView());
+        NavigationService?.Navigate(new ProjectSelectionView());
     }
 
     private void EventSetter_OnHandler(object sender, MouseEventArgs e)

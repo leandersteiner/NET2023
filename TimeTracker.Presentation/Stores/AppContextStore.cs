@@ -6,7 +6,8 @@ using TimeTracker.Presentation.Messages;
 
 namespace TimeTracker.Presentation.Stores;
 
-public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessage>
+public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessage>,
+    IRecipient<SelectedOrganisationMessage>, IRecipient<SelectedProjectMessage>
 {
     private User? _selectedUser;
     private bool _userSelected;
@@ -16,7 +17,7 @@ public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessa
 
     public AppContextStore()
     {
-        WeakReferenceMessenger.Default.Register(this);
+        WeakReferenceMessenger.Default.RegisterAll(this);
         SelectedUser = null;
         UserSelected = false;
     }
@@ -47,7 +48,6 @@ public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessa
 
     public void Receive(SelectedUserMessage message)
     {
-        Debug.WriteLine("Received");
         if (message.Value is null)
         {
             SelectedUser = null;
@@ -63,5 +63,27 @@ public class AppContextStore : ObservableRecipient, IRecipient<SelectedUserMessa
         }
 
         UserSelected = true;
+    }
+
+    public void Receive(SelectedOrganisationMessage message)
+    {
+        if (message.Value is null)
+        {
+            SelectedOrganisation = null;
+            return;
+        }
+
+        SelectedOrganisation = message.Value.Organisation;
+    }
+
+    public void Receive(SelectedProjectMessage message)
+    {
+        if (message.Value is null)
+        {
+            SelectedProject = null;
+            return;
+        }
+
+        SelectedProject = message.Value.Project;
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System.Windows;
-using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
-using TimeTracker.Presentation.Messages;
 using TimeTracker.Presentation.ViewModels;
 
 namespace TimeTracker.Presentation.Views;
@@ -20,12 +18,12 @@ public partial class Shell
 
     private void UserButton_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        ContentFrame.Navigate(new UserView());
     }
 
     private void ProjectsButton_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        ContentFrame.Navigate(new ProjectSelectionView());
     }
 
     private void TasksButton_OnClick(object sender, RoutedEventArgs e)
@@ -45,7 +43,6 @@ public partial class Shell
 
     private void BackToUserSelectionButton_OnClick(object sender, RoutedEventArgs e)
     {
-        WeakReferenceMessenger.Default.Send(new SelectedUserMessage(null));
         ContentFrame.Navigate(new UserSelectionView());
     }
 }

@@ -7,6 +7,8 @@ public class Record : BaseModel
     private DateTime _start;
     private DateTime _end;
     private User _creator = null!;
+    private Project _project = null!;
+    private WorkItem _workItem = null!;
 
     [Required]
     public DateTime Start
@@ -27,4 +29,18 @@ public class Record : BaseModel
         get => _creator;
         set => SetProperty(ref _creator, value);
     }
+
+    public Project Project
+    {
+        get => _project;
+        set => SetProperty(ref _project, value);
+    }
+
+    public WorkItem WorkItem
+    {
+        get => _workItem;
+        set => SetProperty(ref _workItem, value);
+    }
+
+    public TimeSpan Duration => End - Start;
 }

@@ -11,7 +11,7 @@ public class TimeTrackerContext : DbContext
     public DbSet<Organisation> Organisations => Set<Organisation>();
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<Record> Records => Set<Record>();
-    public DbSet<WorkItem> Tasks => Set<WorkItem>();
+    public DbSet<WorkItem> WorkItems => Set<WorkItem>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
